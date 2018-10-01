@@ -6,16 +6,16 @@ package com.pwx.spring.mvc.model;
  */
 public class UserDomain {
 
-    private Integer userId;
+    private String userId;
     private String userName;
     private String password;
     private String phone;
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
