@@ -6,6 +6,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 /**
  * Created by pengweixiang on 2018/10/1.
@@ -25,8 +26,13 @@ public class ExceptionHandle {
     @ResponseBody
     public Result exceptionGet(Exception e) {
 
+        //404地址异常信息
+        if (e instanceof NoHandlerFoundException)
+        {
+            return ResultUtil.error(ResultStatusEnum.URI_NOT_EXIST);
+        }
         //已知的异常信息
-        if (e instanceof MyException)
+        else if (e instanceof MyException)
         {
             MyException myException = (MyException) e;
             return ResultUtil.error(myException.getStatus(), myException.getMessage());

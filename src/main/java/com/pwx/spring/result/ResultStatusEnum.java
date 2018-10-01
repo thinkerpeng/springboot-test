@@ -14,8 +14,9 @@ public enum ResultStatusEnum {
     SUCCESS(200, "Success"),
 
     // 400异常
-    USER_NOT_FOUND(404001, "User is not exist"),
-    PARAMETER_IS_INVALID(404002, "Parameter is invalid"),
+    URI_NOT_EXIST(404001, "Uri is not exist"),
+    USER_NOT_FOUND(404002, "User is not exist"),
+    PARAMETER_IS_INVALID(404003, "User parameter is invalid"),
     ;
 
     private Integer status;

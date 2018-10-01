@@ -40,6 +40,12 @@ spring:
       #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
       pool-prepared-statements: false
       max-pool-prepared-statement-per-connection-size: 20
+  #出现错误时, 直接抛出异常(404地址异常)
+  mvc:
+    throw-exception-if-no-handler-found: true
+  #不要为我们工程中的资源文件建立映射(404地址异常)
+  resources:
+    add-mappings: false
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
