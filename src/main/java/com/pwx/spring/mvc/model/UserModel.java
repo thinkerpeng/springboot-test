@@ -1,10 +1,12 @@
 package com.pwx.spring.mvc.model;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 /**
- * User实体类
+ * User模型类，前台传入后台
  * Created by pengweixiang on 2018/9/17.
  */
-public class UserDomain {
+public class UserModel {
 
     private String userId;
     private String userName;
@@ -19,6 +21,7 @@ public class UserDomain {
         this.userId = userId;
     }
 
+    @NotBlank(message = "userName can not be empty!")
     public String getUserName() {
         return userName;
     }
@@ -27,6 +30,7 @@ public class UserDomain {
         this.userName = userName;
     }
 
+    @NotBlank(message = "password can not be empty!")
     public String getPassword() {
         return password;
     }

@@ -2,6 +2,7 @@ package com.pwx.spring.result;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,9 +26,16 @@ public class ExceptionHandle {
     public Result exceptionGet(Exception e) {
 
         //已知的异常信息
-        if (e instanceof MyException) {
+        if (e instanceof MyException)
+        {
             MyException myException = (MyException) e;
             return ResultUtil.error(myException.getStatus(), myException.getMessage());
+        }
+        //参数校验异常信息
+        else if (e instanceof MethodArgumentNotValidException)
+        {
+            String message = ((MethodArgumentNotValidException) e).getBindingResult().getFieldError().getDefaultMessage();
+            return ResultUtil.error(ResultStatusEnum.PARAMETER_IS_INVALID.getStatus(), message);
         }
 
         //未知的异常信息

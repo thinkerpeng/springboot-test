@@ -1,14 +1,14 @@
 package com.pwx.spring.mvc.service.impl;
 
 import com.github.pagehelper.PageInfo;
-import com.pwx.spring.mvc.model.UserDomain;
+import com.pwx.spring.mvc.model.UserModel;
 
 /**
  * Created by pengweixiang on 2018/9/17.
  */
 public interface UserService {
 
-    int addUser(UserDomain user);
+    int addUser(UserModel user);
 
-    PageInfo<UserDomain> findAllUser(int pageNum, int pageSize);
+    PageInfo<UserModel> findAllUser(int pageNum, int pageSize);
 }

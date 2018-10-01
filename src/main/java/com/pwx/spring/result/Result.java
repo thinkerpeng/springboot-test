@@ -2,6 +2,7 @@ package com.pwx.spring.result;
 
 /**
  * Created by pengweixiang on 2018/10/1.
+ * controller请求的返回体
  */
 public class Result<T> {
 

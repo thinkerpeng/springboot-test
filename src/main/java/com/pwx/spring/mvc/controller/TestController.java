@@ -1,6 +1,7 @@
 package com.pwx.spring.mvc.controller;
 
-import com.pwx.spring.mvc.model.UserDomain;
+import com.pwx.spring.mvc.entity.User;
+import com.pwx.spring.mvc.model.UserModel;
 import com.pwx.spring.mvc.model.WeatherSettings;
 import com.pwx.spring.result.ExceptionHandle;
 import com.pwx.spring.result.Result;
@@ -12,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 /**
  * Created by pengweixiang on 2018/9/16.
@@ -53,12 +56,14 @@ public class TestController {
 
     @ResponseBody
     @RequestMapping(value = "/result", method = RequestMethod.POST)
-    public Result getResult(@RequestBody UserDomain userDomain){
+    public Result getResult(@RequestBody @Valid UserModel userModel){
         Result result = ResultUtil.success();
         try {
-            if (userDomain.getUserName().equals("pwx")) {
-                result = ResultUtil.success(userDomain);
-            } else if (userDomain.getUserName().equals("sb")) {
+            if (userModel.getUserName().equals("pwx")) {
+                //由于model中有用户的密码敏感信息，需采用抽离请求参数模型的方式进行处理，采用User类
+                User user = new User(userModel.getUserId(), userModel.getUserName(), userModel.getPhone());
+                result = ResultUtil.success(user);
+            } else if (userModel.getUserName().equals("sb")) {
                 result = ResultUtil.error(ResultStatusEnum.USER_NOT_FOUND);
             } else {
                 int i = 1 / 0;
