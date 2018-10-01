@@ -47,7 +47,7 @@ mybatis:
 
 test:
   weather:
-    city: 汕尾
+    city: 深圳
     jsonurl: http://t.weather.sojson.com/api/weather/city/%s
     xmlurl: https://www.sojson.com/open/api/weather/xml.shtml?city=%s
 
