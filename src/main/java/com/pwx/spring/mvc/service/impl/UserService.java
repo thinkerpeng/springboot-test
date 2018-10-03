@@ -1,6 +1,7 @@
 package com.pwx.spring.mvc.service.impl;
 
 import com.github.pagehelper.PageInfo;
+import com.pwx.spring.mvc.entity.User;
 import com.pwx.spring.mvc.model.UserModel;
 
 /**
@@ -8,7 +9,13 @@ import com.pwx.spring.mvc.model.UserModel;
  */
 public interface UserService {
 
-    int addUser(UserModel user);
+    int addUser(UserModel userModel);
 
-    PageInfo<UserModel> findAllUser(int pageNum, int pageSize);
+    User findUser(String id);
+
+    int updateUser(UserModel userModel);
+
+    int deleteUser(String id);
+
+    PageInfo<User> findAllUser(int pageNum, int pageSize);
 }

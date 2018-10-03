@@ -2,23 +2,24 @@ package com.pwx.spring.mvc.model;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+
 /**
  * User模型类，前台传入后台
  * Created by pengweixiang on 2018/9/17.
  */
 public class UserModel {
 
-    private String userId;
+    private String id;
     private String userName;
     private String password;
     private String phone;
 
-    public String getUserId() {
-        return userId;
+    public String getId() {
+        return id;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     @NotBlank(message = "userName can not be empty!")
@@ -39,6 +40,8 @@ public class UserModel {
         this.password = password;
     }
 
+    //自定义注解
+    @Phone
     public String getPhone() {
         return phone;
     }

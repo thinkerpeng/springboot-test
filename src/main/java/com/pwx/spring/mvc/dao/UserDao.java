@@ -1,5 +1,6 @@
 package com.pwx.spring.mvc.dao;
 
+import com.pwx.spring.mvc.entity.User;
 import com.pwx.spring.mvc.model.UserModel;
 
 import java.util.List;
@@ -10,7 +11,13 @@ import java.util.List;
  */
 public interface UserDao {
 
-    int insert(UserModel record);
+    int insertUser(UserModel record);
 
-    List<UserModel> selectUsers();
+    User selectUser(String id);
+
+    int updateUser(UserModel userModel);
+
+    int deleteUser(String id);
+
+    List<User> selectUsers();
 }

@@ -6,24 +6,24 @@ package com.pwx.spring.mvc.entity;
  */
 public class User {
 
-    private String userId;
+    private String id;
     private String userName;
     private String phone;
 
     public User() {}
 
     public User(String userId, String userName, String phone) {
-        this.userId = userId;
+        this.id = userId;
         this.userName = userName;
         this.phone = phone;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getId() {
+        return id;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getUserName() {
@@ -45,7 +45,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "userId='" + userId + '\'' +
+                "id='" + id + '\'' +
                 ", userName='" + userName + '\'' +
                 ", phone='" + phone + '\'' +
                 '}';

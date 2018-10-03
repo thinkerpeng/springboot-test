@@ -1,36 +1,47 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.pwx.spring.mvc.dao.UserDao" >
-    <sql id="BASE_TABLE">
-        t_user
-    </sql>
 
     <sql id="BASE_COLUMN">
-        userId,userName,password,phone
+        id,userName,phone
     </sql>
 
-    <insert id="insert" parameterType="com.pwx.spring.mvc.model.UserModel">
-        INSERT INTO
-        <include refid="BASE_TABLE"/>
+    <insert id="insertUser" parameterType="com.pwx.spring.mvc.model.UserModel">
+        insert into t_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            userName,password,
+            id, userName, password,
             <if test="phone != null">
                 phone,
             </if>
         </trim>
         <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
-            #{userName, jdbcType=VARCHAR},#{password, jdbcType=VARCHAR},
+            #{id, jdbcType=VARCHAR}, #{userName, jdbcType=VARCHAR},#{password, jdbcType=VARCHAR},
             <if test="phone != null">
                 #{phone, jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
 
-    <select id="selectUsers" resultType="com.pwx.spring.mvc.model.UserModel">
-        SELECT
-        <include refid="BASE_COLUMN"/>
-        FROM
-        <include refid="BASE_TABLE"/>
+    <update id="updateUser" parameterType="com.pwx.spring.mvc.model.UserModel">
+        update t_user
+        <set>
+            <if test="userName != null">userName=#{userName},</if>
+            <if test="password != null">password=#{password},</if>
+            <if test="phone != null">phone=#{phone}</if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <delete id="deleteUser" parameterType="java.lang.String">
+        delete from t_user where id = #{id}
+    </delete>
+
+    <select id="selectUser" parameterType="java.lang.String" resultType="com.pwx.spring.mvc.entity.User">
+        select <include refid="BASE_COLUMN" /> from t_user where id = #{id};
+    </select>
+
+    <select id="selectUsers" resultType="com.pwx.spring.mvc.entity.User">
+        select <include refid="BASE_COLUMN" /> from t_user
     </select>
 
 
