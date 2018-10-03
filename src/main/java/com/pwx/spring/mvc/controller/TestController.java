@@ -54,24 +54,4 @@ public class TestController {
         return weatherSettings;
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/result", method = RequestMethod.POST)
-    public Result getResult(@RequestBody @Valid UserModel userModel){
-        Result result = ResultUtil.success();
-        try {
-            if (userModel.getUserName().equals("pwx")) {
-                //由于model中有用户的密码敏感信息，需采用抽离请求参数模型的方式进行处理，采用User类
-                User user = new User(userModel.getId(), userModel.getUserName(), userModel.getPhone());
-                result = ResultUtil.success(user);
-            } else if (userModel.getUserName().equals("sb")) {
-                result = ResultUtil.error(ResultStatusEnum.USER_NOT_FOUND);
-            } else {
-                int i = 1 / 0;
-            }
-        } catch (Exception e) {
-            result = exceptionHandle.exceptionGet(e);
-        }
-
-        return result;
-    }
 }
