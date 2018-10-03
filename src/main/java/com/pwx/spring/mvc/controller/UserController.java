@@ -14,7 +14,7 @@ import javax.validation.Valid;
 
 /**
  * Created by pengweixiang on 2018/9/19.
- * User接口控制类，遵循Rest风格
+ * User接口控制类，Rest风格
  */
 @RestController
 @RequestMapping(value = "/v1.0")
